@@ -2,8 +2,7 @@ class Solution {
     public boolean isHappy(int n) {
 
         int sum = 0, rem = 0, ans = 0, temp = 0;
-        if (n == 1 || n == 7)
-            return true;
+ 
         while (n > 1) {
             ans = 0;
             if (n == 4) {
