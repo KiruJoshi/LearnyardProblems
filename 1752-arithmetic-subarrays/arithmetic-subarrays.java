@@ -8,9 +8,8 @@ class Solution {
              flag=true;
             int temp[] = new int[r[i] - l[i] + 1];
             temp = Arrays.copyOfRange(nums, l[i], r[i] + 1);
-            Arrays.sort(temp);
-           // System.out.println(Arrays.toString(temp));
-            diff = temp[1]-temp[0];
+            Arrays.sort(temp);//4  5 6 9
+            diff = temp[1]-temp[0];//diff=1
             for (int j = 0; j < temp.length - 1; j++) {
                 check=temp[j+1]-temp[j];
                 if(check!=diff){
