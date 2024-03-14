@@ -31,7 +31,7 @@ class Solution {
                 even_list.add(result[i]);
             }
         }
-        System.out.println("array:" +Arrays.toString(result));
+       // System.out.println("array:" +Arrays.toString(result));
         node=head;
          int n=0,m=0;
       while(node!=null){
