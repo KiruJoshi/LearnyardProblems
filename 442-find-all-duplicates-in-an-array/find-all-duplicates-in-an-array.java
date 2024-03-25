@@ -1,19 +1,18 @@
 class Solution {
     public List<Integer> findDuplicates(int[] nums) {
-      List<Integer> list=new ArrayList<>();
-        int freq[]=new int[nums.length+1];
-        for(int i=0;i<nums.length;i++){//--n
-            freq[nums[i]]++;
-        }
-        System.out.println("Printing Freq of each element "+Arrays.toString(nums)+" " +Arrays.toString(freq));
-        for(int i=0;i<freq.length;i++) {//--n+1
-            if (freq[i] == 2) {
-                list.add(i);
-            }
-        }
+
+     ArrayList<Integer> list=new ArrayList<>();
+     HashMap<Integer, Integer> map=new HashMap<>();
+     int n=nums.length;
+     for(int i=0; i<n;i++){
+        map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+     }  
+      for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+         //   System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+         if(entry.getValue()>1){
+            list.add(entry.getKey());
+         }
+     }
         return list;
     }
-    
 }
-//TC-o(n)/
-//SC-o(n)
