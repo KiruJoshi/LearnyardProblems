@@ -9,7 +9,8 @@ class Solution {
         // for taking previous should be smaller from current element
         if(prev == -1 || nums[prev]< nums[current]){
             taken = 1 + helper(current, current+1, nums, dp);
-        }    
+        } 
+        //if not taking just increase the current element   
         int  notTaken = helper(prev, current+1, nums, dp);
         if(prev != -1){
           dp[prev][current] = Math.max(taken, notTaken);  
