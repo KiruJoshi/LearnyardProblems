@@ -12,7 +12,7 @@ class Solution {
 
      
       System.out.println(map.keySet());
-      for (Character c : chars) {
+      for (Character c : chars) { //travesre on list
 		for (int i = 0; i < map.get(c); i++) {
 			result.append(c);
 		}
