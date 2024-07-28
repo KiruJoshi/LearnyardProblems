@@ -1,39 +1,41 @@
 /**
  * Definition for singly-linked list.
  * public class ListNode {
- * int val;
- * ListNode next;
- * ListNode() {}
- * ListNode(int val) { this.val = val; }
- * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
 class Solution {
     public void reorderList(ListNode head) {
-        int size = 0;
-        ListNode current = head;
-        while (current != null) {
-            current = current.next;
-            size++;
-        }
-        current = head;
-        int arr[] = new int[size];
-        for (int i = 0; i < size; i++) {
-            arr[i] = current.val;
-            current = current.next;
-        }
-        ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0, j = arr.length-1; i <= j; i++, j--) {
-            list.add(arr[i]);
-            list.add(arr[j]);
-        }
-        current = head;
-        int i=0;
-        while (current != null) {
-            current.val = list.get(i);
-            i++;
-            current = current.next;
-        }
-       // return head;
+     ListNode current=head;
+    
+     int size=0;
+     while(current!=null){
+        current=current.next;
+        size++;
+     }
+     current=head;  
+     int arr[]=new int[size];
+     int i=0;
+     while(current!=null){
+        arr[i++]=current.val;
+        current=current.next;
+     }
+     ArrayList<Integer> list=new ArrayList<>();
+     for(int k=0,j=arr.length-1;k<=j;k++,j--){
+        list.add(arr[k]);
+        list.add(arr[j]);
+     }
+     System.out.println(list);
+     current=head;
+     for(int m=0;m<list.size();m++){
+        if(current!=null){
+       current.val = list.get(m);
+       current=current.next;
+      }
+     } 
     }
 }
