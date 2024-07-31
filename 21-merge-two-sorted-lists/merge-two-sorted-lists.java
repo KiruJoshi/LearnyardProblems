@@ -13,7 +13,7 @@ class Solution {
         ListNode dummy = new ListNode(0);
         ListNode current1 = list1;
         ListNode current2 = list2;
-        ListNode ptr = dummy, temp = null;
+        ListNode ptr = dummy;
         while (current1 != null && current2 != null) {
             if (current1.val <= current2.val) {
                 ptr.next = new ListNode(current1.val);
