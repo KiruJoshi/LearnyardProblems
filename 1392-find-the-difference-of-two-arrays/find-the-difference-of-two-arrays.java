@@ -5,7 +5,6 @@ class Solution {
         List<List<Integer>> ansList = new ArrayList<>();
         ArrayList<Integer> nums2List = new ArrayList<>();
         HashSet<Integer> set1 = new HashSet<>();
-          HashSet<Integer> ans = new HashSet<>();
         HashSet<Integer> set2 = new HashSet<>();
         int n1 = nums1.length;
         int n2 = nums2.length;
