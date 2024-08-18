@@ -1,31 +1,34 @@
 class Solution {
     public static int[][] merge(int[][] result) {
-      int i=0,j=1;
-      int n = result.length;
-      ArrayList<int[]> list = new ArrayList<>();
-      int[][] ans=new int[list.size()][2];
-      while(j<n){
-       if(result[i][1]>=result[j][0]){
-       result[i][1]=Math.max(result[i][1],result[j][1]);
-       }else {
-            // Add the merged interval to the list
-            list.add(new int[]{result[i][0], result[i][1]});
-            i = j;
+        int i = 0, j = 1;
+        /*
+         * [1,3],[2,5],[6,9]
+         * [1,5],[2,5],[6,9]
+         * list.add([1,5][6,9])
+         */
+        int n = result.length;// 3
+        ArrayList<int[]> list = new ArrayList<>();
+        int[][] ans = new int[list.size()][2];
+        while (j < n) {
+            if (result[i][1] >= result[j][0]) {// overlapping condition
+                result[i][1] = Math.max(result[i][1], result[j][1]);
+            } else {
+                // Add the merged interval to the list
+                list.add(new int[] { result[i][0], result[i][1] });
+                i = j;// i=2
+            }
+            j++;
         }
-       j++;
-      }
-      // Add the last merged interval to the list
-    list.add(new int[]{result[i][0], result[i][1]});
-    
-    // Initialize ans array with the correct size
-    ans = new int[list.size()][2];  
-     for (int k = 0; k < list.size(); k++) {
-        ans[k][0] = list.get(k)[0];
-        ans[k][1] = list.get(k)[1];
-      }
-      return ans;
+        // Add the last merged interval to the list
+        list.add(new int[] { result[i][0], result[i][1] });
+
+        // Initialize ans array with the correct size
+        ans = new int[list.size()][2];
+       list.toArray(ans);
+        return ans;
     }
-    public static int[][] insert(int[][] intervals, int[] newInterval) {
+
+    public static int[][] insert(int[][] intervals, int[] newInterval) {// MAIN FUNCTIOn
         List<Integer> list = new ArrayList<>();
         int n = intervals.length;
         int[][] result = new int[n + 1][2];
