@@ -7,13 +7,15 @@ class MyStack {
     }
      public void push(int x) {
        que.add(x);
-       
+       //fifo
         for (int i=1; i<que.size(); i++) 
         {
             que.add(que.poll());
         }
     }
-
+//1
+//2 1  1 2
+//3 2 1   1 2 3
     public int pop() {
         return que.poll();
     }
