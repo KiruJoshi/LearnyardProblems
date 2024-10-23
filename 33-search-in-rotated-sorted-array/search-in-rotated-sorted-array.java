@@ -1,34 +1,25 @@
 class Solution {
     public int search(int[] nums, int target) {
-        int start = 0;
-        int end = nums.length - 1;
-
-        while (start <= end) {
-            int mid = (start + end) / 2;
-
-            if (nums[mid] == target) {
+        int lo = 0, hi = nums.length-1;
+        while(lo <= hi) {
+            int mid = (lo + hi) / 2;
+            if(nums[mid] == target) 
                 return mid;
-            }
-
-            // The tricky part is to handle the duplicates
-            if (nums[start] == nums[mid] && nums[mid] == nums[end]) {
-                start++;
-                end--;
-            } else if (nums[start] <= nums[mid]) { // Left half is sorted
-                if (nums[start] <= target && target < nums[mid]) {
-                    end = mid - 1;
-                } else {
-                    start = mid + 1;
-                }
-            } else { // Right half is sorted
-                if (nums[mid] < target && target <= nums[end]) {
-                    start = mid + 1;
-                } else {
-                    end = mid - 1;
-                }
+            else if(nums[lo] <= nums[mid]) {
+                //we are in sorted half and based on some checks
+                // for target we can say target dosnt lie in this half
+                if(target < nums[mid] && target >= nums [lo])
+                    hi = mid - 1;
+                else
+                    lo = mid + 1;
+            } else {
+                // this half is sorted
+                if(target > nums[mid] && target <= nums[hi])
+                    lo = mid + 1;
+                else
+                    hi = mid - 1;
             }
         }
-
         return -1;
     }
 }
