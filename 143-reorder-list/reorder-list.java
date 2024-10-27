@@ -1,41 +1,47 @@
 /**
  * Definition for singly-linked list.
  * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * int val;
+ * ListNode next;
+ * ListNode() {}
+ * ListNode(int val) { this.val = val; }
+ * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
 class Solution {
     public void reorderList(ListNode head) {
-     ListNode current=head;
-    
-     int size=0;
-     while(current!=null){
-        current=current.next;
-        size++;
-     }
-     current=head;  
-     int arr[]=new int[size];
-     int i=0;
-     while(current!=null){
-        arr[i++]=current.val;
-        current=current.next;
-     }
-     ArrayList<Integer> list=new ArrayList<>();
-     for(int k=0,j=arr.length-1;k<=j;k++,j--){
-        list.add(arr[k]);
-        list.add(arr[j]);
-     }
-     System.out.println(list);
-     current=head;
-     for(int m=0;m<list.size();m++){
-        if(current!=null){
-       current.val = list.get(m);
-       current=current.next;
-      }
-     } 
+        // find the mid of linkedlist
+        ListNode slow = head, fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        ListNode second_list = slow.next;
+        // breaking the list from middle
+        slow.next = null;
+        ListNode current = second_list;
+        ListNode prev = null, temp = null;
+        while (current != null) {// reverse the middle 2nd list
+            temp = current.next;
+            current.next = prev;
+            prev = current;
+            current = temp;
+        }
+        ListNode newHead = prev;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        current = head;
+        ListNode current1 = head, current2 = newHead;
+
+        while (current2 != null) {
+            ListNode ptr1 = current1.next;
+            ListNode ptr2 = current2.next;
+            current1.next = current2;
+            current2.next = ptr1;
+            current1 = ptr1;
+            current2 = ptr2;
+        }
+
     }
 }
