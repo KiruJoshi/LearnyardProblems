@@ -5,12 +5,7 @@ class KthLargest {
        pq = new PriorityQueue<>();
        this.k=k;
         for (int num : nums) {
-            if (pq.size() < k)//3<3
-                pq.add(num);//4 5 8
-            else if (num > pq.peek()) {// > 4
-                pq.remove();
-                pq.add(num);//4 
-            }
+           add(num);
         }
     }
 
